@@ -9,7 +9,7 @@ const initializeDatabase = async () => {
       useUnifiedTopology: true
     })
     if(connection){
-      console.log("Connected Succesdfully");
+      console.log("Connected Successfully");
     }
     }
   catch(error){
