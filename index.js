@@ -160,18 +160,43 @@ async function updateRestaurantName(oldName, newName) {
 }
 //updateRestaurantName("Somi", { name: "Som Sarovar" });
 
-
 //3. Create a function that accepts a restaurant's phone number and an object with updated data, and updates the restaurant. Take the restaurant which has the phone number "+1288997392" and update isDeliveryAvailable option to true. Console the updated restaurant.
 
-async function updateRestaurantDelivery(phno, delivery){
+async function updateRestaurantDelivery(phno, delivery) {
   try {
     const updatedRestaurant = await Restaurant.findOneAndUpdate(
-      {phoneNumber : phno}, {isDeliveryAvailable: delivery}
+      { phoneNumber: phno },
+      { isDeliveryAvailable: delivery },
     );
-    console.log(updatedRestaurant)
+    console.log(updatedRestaurant);
+  } catch (error) {
+    throw error;
+  }
+}
+
+// updateRestaurantDelivery("+1288997392", true )
+
+// 1. Create a function deleteRestaurantById that accepts a restaurant ID and deletes the restaurant data from the db. Take any restaurant id from your database and delete the records of that restaurant.
+
+async function deleteRestaurantById(restaurantId) {
+  try {
+    const deletedRestaurant = await Restaurant.findByIdAndDelete(restaurantId);
+    console.log("Deleted Restaurant", deletedRestaurant);
+  } catch (error) {
+    throw error;
+  }
+}
+// deleteRestaurantById("6625485a29864914a0bb05c2");
+
+
+// 2. Create a function deleteRestaurantByName that accepts a restaurant name and deletes the restaurant data from the db. Take any restaurant name from your database and delete the records of that restaurant.
+
+async function deleteRestaurantByName(restaurantName){
+  try {
+    const deletedRestaurant = await Restaurant.findOneAndDelete(restaurantName) ;
+    console.log("Deleted Restaurant:", deletedRestaurant)
   } catch(error){
     throw error
   }
-} 
-
-updateRestaurantDelivery("+1288997392", true )
+}
+deleteRestaurantByName("Cha Cha")
